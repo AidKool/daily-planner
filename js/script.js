@@ -3,6 +3,12 @@ $(window).on('load', () => {
 
   loadPlanner();
   colourBlocks();
+
+  $('.saveBtn').on('click', (event) => {
+    const hour = event.currentTarget.parentElement.dataset.hour;
+    const text = event.currentTarget.previousElementSibling.value;
+    localStorage.setItem(hour, text);
+  });
 });
 
 function displayCurrentTime() {
@@ -12,7 +18,7 @@ function displayCurrentTime() {
 
 function loadPlanner() {
   const startTime = moment('08:00:00', 'hh:mm:ss');
-  const endTime = moment('23:00:00', 'hh:mm:ss');
+  const endTime = moment('24:00:00', 'hh:mm:ss');
   const diff = endTime.diff(startTime, 'hours');
   let blockTime = startTime.clone();
   const timeblocks = [...Array(diff)]
@@ -20,7 +26,7 @@ function loadPlanner() {
       block = `
         <div class="row time-block" data-hour="${blockTime.format('HH')}">
           <div class="col-1 hour">${blockTime.format('HH:mm')}</div>
-          <textarea class="col-10">some text</textarea>
+          <textarea class="col-10 description"></textarea>
           <button class="saveBtn col-1">
             <i class="fas fa-save"></i>
           </button>
