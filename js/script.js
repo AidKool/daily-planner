@@ -10,25 +10,22 @@ function displayCurrentTime() {
 }
 
 function loadPlanner() {
-  const start = moment('08:00:00', 'hh:mm:ss');
+  let start = moment('08:00:00', 'hh:mm:ss');
   const end = moment('23:00:00', 'hh:mm:ss');
   const diff = end.diff(start, 'hours');
-  let timeblocks = [...Array(diff)];
-  console.log('length:', timeblocks.length);
-
-  const hour = moment('08:00:00', 'hh:mm:ss').format('hh:mm');
-
-  timeblocks = timeblocks
+  const timeblocks = [...Array(diff)]
     .map((block) => {
-      return `
+      block = `
         <div class="row time-block">
-          <div class="col-1 hour">${hour}</div>
+          <div class="col-1 hour">${start.format('HH:mm')}</div>
           <textarea class="col-10">some text</textarea>
           <button class="saveBtn col-1">
             <i class="fas fa-save"></i>
           </button>
         </div>
       `;
+      start = start.add(1, 'hours');
+      return block;
     })
     .join('');
 
