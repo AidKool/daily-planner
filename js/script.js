@@ -6,9 +6,7 @@ $(window).on('load', () => {
   loadFromLocalStorage();
 
   $('.saveBtn').on('click', (event) => {
-    const hour = event.currentTarget.parentElement.dataset.hour;
-    const text = event.currentTarget.previousElementSibling.value;
-    localStorage.setItem(hour, text);
+    saveToLocalStorage(event);
   });
 });
 
@@ -52,6 +50,12 @@ function colourBlocks() {
       $(block).addClass('future');
     }
   });
+}
+
+function saveToLocalStorage(event) {
+  const hour = event.currentTarget.parentElement.dataset.hour;
+  const text = event.currentTarget.previousElementSibling.value;
+  localStorage.setItem(hour, text);
 }
 
 function loadFromLocalStorage() {
