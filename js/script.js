@@ -5,8 +5,10 @@ $(window).on('load', () => {
   colourBlocks();
   loadFromLocalStorage();
 
-  $('.saveBtn').on('click', (event) => {
-    saveToLocalStorage(event);
+  $('.saveBtn').on('click', function () {
+    const hour = $(this).parent().data('hour');
+    const text = $(this).siblings('.description').val();
+    localStorage.setItem(hour, text);
   });
 });
 
@@ -41,27 +43,21 @@ function loadPlanner() {
 
 function colourBlocks() {
   const currentHour = moment().hours();
-  $('.time-block').each((index, block) => {
-    if (currentHour > block.dataset.hour) {
-      $(block).addClass('past');
-    } else if (currentHour == block.dataset.hour) {
-      $(block).addClass('present');
+  $('.time-block').each(function () {
+    if (currentHour > $(this).data('hour')) {
+      $($(this)).addClass('past');
+    } else if (currentHour == $(this).data('hour')) {
+      $($(this)).addClass('present');
     } else {
-      $(block).addClass('future');
+      $($(this)).addClass('future');
     }
   });
 }
 
-function saveToLocalStorage(event) {
-  const hour = event.currentTarget.parentElement.dataset.hour;
-  const text = event.currentTarget.previousElementSibling.value;
-  localStorage.setItem(hour, text);
-}
-
 function loadFromLocalStorage() {
-  $('.time-block').each((index, block) => {
-    let hour = block.dataset.hour;
+  $('.time-block').each(function () {
+    let hour = $(this).data('hour');
     let text = localStorage.getItem(hour);
-    block.children[1].textContent = text;
+    $(this).children('.description').text(text);
   });
 }
