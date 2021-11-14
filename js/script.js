@@ -3,6 +3,7 @@ $(window).on('load', () => {
 
   loadPlanner();
   colourBlocks();
+  loadFromLocalStorage();
 
   $('.saveBtn').on('click', (event) => {
     const hour = event.currentTarget.parentElement.dataset.hour;
@@ -42,7 +43,6 @@ function loadPlanner() {
 
 function colourBlocks() {
   const currentHour = moment().hours();
-  console.log(currentHour);
   $('.time-block').each((index, block) => {
     if (currentHour > block.dataset.hour) {
       $(block).addClass('past');
@@ -51,5 +51,13 @@ function colourBlocks() {
     } else {
       $(block).addClass('future');
     }
+  });
+}
+
+function loadFromLocalStorage() {
+  $('.time-block').each((index, block) => {
+    let hour = block.dataset.hour;
+    let text = localStorage.getItem(hour);
+    block.children[1].textContent = text;
   });
 }
