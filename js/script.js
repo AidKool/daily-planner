@@ -2,6 +2,7 @@ $(window).on('load', () => {
   displayCurrentTime();
 
   loadPlanner();
+  colourBlocks();
 });
 
 function displayCurrentTime() {
@@ -17,7 +18,7 @@ function loadPlanner() {
   const timeblocks = [...Array(diff)]
     .map((block) => {
       block = `
-        <div class="row time-block">
+        <div class="row time-block" data-hour="${blockTime.format('HH')}">
           <div class="col-1 hour">${blockTime.format('HH:mm')}</div>
           <textarea class="col-10">some text</textarea>
           <button class="saveBtn col-1">
@@ -31,4 +32,18 @@ function loadPlanner() {
     .join('');
 
   $('.jumbotron + .container').append(timeblocks);
+}
+
+function colourBlocks() {
+  const currentHour = moment().hours();
+  console.log(currentHour);
+  $('.time-block').each((index, block) => {
+    if (currentHour > block.dataset.hour) {
+      $(block).addClass('past');
+    } else if (currentHour == block.dataset.hour) {
+      $(block).addClass('present');
+    } else {
+      $(block).addClass('future');
+    }
+  });
 }
