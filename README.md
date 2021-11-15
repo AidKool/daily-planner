@@ -9,7 +9,7 @@ indicates the current hour, and green blocks indicate future hours.
 
 # Screenshot
 
-![daily planner](https://user-images.githubusercontent.com/73796715/141767907-71afc338-fd9a-403c-b447-ae459a2aabda.png)
+![daily planner](https://user-images.githubusercontent.com/73796715/141769465-668792f8-26f0-45f2-848d-6193edc51b05.png)
 
 # Live site
 
