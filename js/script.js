@@ -5,11 +5,7 @@ $(window).on('load', () => {
   colourBlocks();
   loadFromLocalStorage();
 
-  $('.saveBtn').on('click', function () {
-    const hour = $(this).parent().data('hour');
-    const text = $(this).siblings('.description').val();
-    localStorage.setItem(hour, text);
-  });
+  $('.saveBtn').on('click', saveToLocalStorage);
 });
 
 function displayCurrentTime() {
@@ -52,6 +48,12 @@ function colourBlocks() {
       $($(this)).addClass('future');
     }
   });
+}
+
+function saveToLocalStorage() {
+  const hour = $(this).parent().data('hour');
+  const text = $(this).siblings('.description').val();
+  localStorage.setItem(hour, text);
 }
 
 function loadFromLocalStorage() {
