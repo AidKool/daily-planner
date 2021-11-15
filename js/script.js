@@ -14,8 +14,8 @@ function displayCurrentTime() {
 }
 
 function loadPlanner() {
-  const startTime = moment('08:00:00', 'hh:mm:ss');
-  const endTime = moment('24:00:00', 'hh:mm:ss');
+  const startTime = moment('09:00:00', 'hh:mm:ss');
+  const endTime = moment('18:00:00', 'hh:mm:ss');
   const diff = endTime.diff(startTime, 'hours');
   let blockTime = startTime.clone();
   const timeblocks = [...Array(diff)]
