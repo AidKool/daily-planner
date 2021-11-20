@@ -9,7 +9,7 @@ $(window).on('load', () => {
 });
 
 function displayCurrentTime() {
-  let today = moment();
+  const today = moment();
   $('#currentDay').text(today.format('dddd, Do MMMM YYYY'));
 }
 
