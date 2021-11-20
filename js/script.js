@@ -21,13 +21,13 @@ function loadPlanner() {
   const timeblocks = [...Array(diff)]
     .map((block) => {
       block = `
-        <div class="row time-block" data-hour="${blockTime.format('HH')}">
-          <div class="col-1 hour">${blockTime.format('HH:mm')}</div>
+        <fieldset class="row time-block" data-hour="${blockTime.format('HH')}">
+          <label for='description' class="col-1 hour">${blockTime.format('HH:mm')}</label>
           <textarea class="col-10 description"></textarea>
           <button class="saveBtn col-1">
             <i class="fas fa-save"></i>
           </button>
-        </div>
+        </fieldset>
       `;
       blockTime = blockTime.add(1, 'hours');
       return block;
