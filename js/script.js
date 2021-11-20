@@ -42,7 +42,7 @@ function colourBlocks() {
   $('.time-block').each(function () {
     if (currentHour > $(this).data('hour')) {
       $($(this)).addClass('past');
-    } else if (currentHour == $(this).data('hour')) {
+    } else if (currentHour === $(this).data('hour')) {
       $($(this)).addClass('present');
     } else {
       $($(this)).addClass('future');
