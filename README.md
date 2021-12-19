@@ -14,3 +14,8 @@ indicates the current hour, and green blocks indicate future hours.
 # Live site
 
 https://aidkool.github.io/daily-planner/
+
+# License
+
+This work is licensed under
+[MIT](https://github.com/AidKool/daily-planner/blob/master/LICENSE).
